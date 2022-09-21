@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [cards, setCards] = useState([]);
+  const [searchField, setSearchField] = useState("");
+  // state variables
+
+  // fetch data from api everytime the app is rerender
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(data => setCards(data));
+  });
+
+  // filter algo to support searching feature
+  const filterCards = cards.filter(card =>
+    card.name.toLowerCase().includes(searchField.toLowerCase())
+  );
+
+  const changeHandler = e => {
+    setSearchField(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Monster Rolodex</h1>
+      <SearchBar placeholder="Search Here!" handleChange={changeHandler} />
+      <CardList monsters={filterCards} />
     </div>
   );
 }
