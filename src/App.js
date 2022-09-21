@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-
+import {SearchBar} from './components/search-bar/search-bar.component'
+import {CardList} from './components/card-list/card-list.component'
 function App() {
   const [cards, setCards] = useState([]);
   const [searchField, setSearchField] = useState("");
@@ -26,7 +27,7 @@ function App() {
     <div className="App">
       <h1>Monster Rolodex</h1>
       <SearchBar placeholder="Search Here!" handleChange={changeHandler} />
-      <CardList monsters={filterCards} />
+      <CardList cards={filterCards} />
     </div>
   );
 }
