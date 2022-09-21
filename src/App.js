@@ -19,13 +19,14 @@ function App() {
     card.name.toLowerCase().includes(searchField.toLowerCase())
   );
 
+  // eventhandler to update searchField with search input from users
   const changeHandler = e => {
     setSearchField(e.target.value);
   };
 
   return (
     <div className="App">
-      <h1>Monster Rolodex</h1>
+      <h1>Card Search</h1>
       <SearchBar placeholder="Search Here!" handleChange={changeHandler} />
       <CardList cards={filterCards} />
     </div>
