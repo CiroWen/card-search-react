@@ -16,7 +16,7 @@ function App() {
 
   // filter algo to support searching feature
   const filterCards = cards.filter(card =>
-    card.name.toLowerCase().includes(searchField.toLowerCase())
+    card.username.toLowerCase().includes(searchField.toLowerCase())
   );
 
   // eventhandler to update searchField with search input from users
